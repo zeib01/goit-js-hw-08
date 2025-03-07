@@ -64,19 +64,18 @@ const images = [
   description: 'Lighthouse Coast Sea',
   },
 ];
+
+// Створюємо галерею
 const galleryContainer = document.querySelector(".gallery");
 
-// Генеруємо HTML-розмітку галереї
 galleryContainer.innerHTML = images.map(image => 
   `<li class="gallery-item">
       <img class="gallery-image" src="${image.preview}" data-source="${image.original}" alt="${image.description}" />
   </li>`
 ).join('');
 
-// Додаємо обробник подій
-galleryContainer.addEventListener('click', selectImg);
-
-function selectImg(event) {
+// Обробник подій для кліку по елементах галереї
+galleryContainer.addEventListener('click', (event) => {
   event.preventDefault();
 
   const target = event.target;
@@ -84,9 +83,26 @@ function selectImg(event) {
 
   const largeImageURL = target.dataset.source;
 
+  // Ініціалізація та відкриття модального вікна
   const instance = basicLightbox.create(`
-    <img src="${largeImageURL}" alt="${target.alt}" style="width: 800px; height: 600px; object-fit: contain;">
+    <div class="lightbox-content">
+      <img src="${largeImageURL}" alt="${target.alt}" style="width: 800px; height: 600px; object-fit: contain;">
+    </div>
   `);
 
+  // Відображаємо модальне вікно
   instance.show();
-}
+
+  // Закриваємо модальне вікно при натисканні на зображення
+  const lightboxImage = instance.element().querySelector('img');
+  lightboxImage.addEventListener('click', () => {
+    instance.close();
+  });
+
+  // Також закриваємо модальне вікно при натисканні на фон
+  instance.element().addEventListener('click', (e) => {
+    if (e.target === instance.element()) {
+      instance.close();
+    }
+  });
+});
