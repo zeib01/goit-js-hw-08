@@ -34,11 +34,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8); /* Темний фон для фону */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .basicLightbox img {
@@ -66,4 +66,14 @@
   100% {
     opacity: 1;
   }
+}
+
+/* Стилі для контенту модального вікна */
+.lightbox-content {
+  position: relative;
+  background-color: transparent;
+}
+
+.lightbox-image {
+  max-width: 
 }
