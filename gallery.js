@@ -1,4 +1,4 @@
-import * as basicLightbox from 'basiclightbox'
+
 const images = [
   {
    preview:
@@ -64,29 +64,28 @@ const images = [
   description: 'Lighthouse Coast Sea',
   },
 ];
-
 const galleryContainer = document.querySelector(".gallery");
 
+// Генеруємо HTML-розмітку галереї
 galleryContainer.innerHTML = images.map(image => 
   `<li class="gallery-item">
-    <a class="gallery-link" href="${image.original}">
       <img class="gallery-image" src="${image.preview}" data-source="${image.original}" alt="${image.description}" />
-    </a>
   </li>`
 ).join('');
 
+// Додаємо обробник подій
 galleryContainer.addEventListener('click', selectImg);
 
 function selectImg(event) {
   event.preventDefault();
-  
+
   const target = event.target;
   if (target.nodeName !== "IMG") return;
-  
+
   const largeImageURL = target.dataset.source;
-  
+
   const instance = basicLightbox.create(`
-    <img src="${largeImageURL}" alt="${target.alt}" width: "800"; height: "600"; object-fit: contain;">
+    <img src="${largeImageURL}" alt="${target.alt}" style="width: 800px; height: 600px; object-fit: contain;">
   `);
 
   instance.show();
