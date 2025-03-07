@@ -75,5 +75,17 @@
 }
 
 .lightbox-image {
-  max-width: 
+  max-width: 90%; /* Зробити зображення максимально ширшим */
+  max-height: 90vh; /* Зберігаємо висоту відносно вікна перегляду */
+  object-fit: contain; /* Не змінюємо пропорції */
+  border: 3px solid white; /* Біла рамка навколо зображення */
+  cursor: pointer; /* Курсор при наведенні на зображення */
+}
+
+.basicLightbox__overlay {
+  background-color: rgba(0, 0, 0, 0.7); /* Прозорий чорний фон */
+}
+
+.basicLightbox__button {
+  display: none; /* Видаляємо стандартні кнопки */
 }
